@@ -1,26 +1,5 @@
 # Source - https://github.com/s-titoo/Geocoding-in-R
-
-# install.packages("ggmap")
-# install.packages("tmaptools")
-# install.packages("RCurl")
-# install.packages("jsonlite")
-# install.packages("tidyverse")
-# install.packages("leaflet")
-# install.packages("rjson")
-
-# load packages
-library(ggmap)
-library(tmaptools)
-library(RCurl)
-library(jsonlite)
-library(tidyverse)
-library(leaflet)
-library(rjson)
-
-# replace "api_key" with your API key
-setwd("T:/DCProjects/GitHub/BikeCounting")
-api_key <- fromJSON(file = "config/keys.json")$google_maps$APIKEY
-register_google(key = api_key)
+source("T:/DCProjects/GitHub/RLearning/geocoding_functions.R")
 
 ################################################ ggmap ###############################################
 
@@ -277,7 +256,6 @@ messages
 cat(check_arguments(c(1,2,3), "contact", 1)[[2]])
 
 ############################# Geocoding Using Google Maps API ##########################
-source("T:/DCProjects/GitHub/RLearning/geocoding_functions.R")
 # replace "api_key" with your API key
 pubs_google <- geocode_google(pubs, "all", api_key)
 

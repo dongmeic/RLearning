@@ -1,4 +1,17 @@
 
+# load packages
+library(ggmap)
+library(tmaptools)
+library(RCurl)
+library(jsonlite)
+library(tidyverse)
+library(leaflet)
+library(rjson)
+
+# replace "api_key" with your API key
+api_key <- fromJSON(file = "T:/DCProjects/GitHub/BikeCounting/config/keys.json")$google_maps$APIKEY
+register_google(key = api_key)
+
 # ///////////////////////////////////////////////
 # SUPLEMENTARY FUNCTIONS
 # ///////////////////////////////////////////////
@@ -498,7 +511,7 @@ get_rev_geodata_from_json_google <- function(geodata_json) {
         
         # extract city and country
         
-        if (type == "postal_town") {
+        if (type %in% c("postal_town","locality")){
           city <- geodata[[i]]$results[[1]]$address_components[[j]]$long_name 
         } else if (type == "country") {
           country <- geodata[[i]]$results[[1]]$address_components[[j]]$long_name
